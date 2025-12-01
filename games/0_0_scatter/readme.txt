@@ -1,35 +1,41 @@
-# Scatter-Pays Game
+# Candy Carnage 1000
 
-#### Summary:
+## Summary
 
-* A 6-reel, 5-row pay-anywhere tumbling (cascading) game.
-* 8 paying total (4 high, 4 low)
-* 2 special symbols (wild, scatter)
+- 6×5 scatter-pay slot with cascades.
+- RTP target ~96.2%; max win capped near 25,000×.
+- Symbols: 5 lows (L1–L5), 4 highs (H1–H4), scatter `S`, super scatter `BS`, multiplier `M`.
+- Bet modes:
+  - `base` – standard cost 1×.
+  - `bonus_hunt` – 3× bet, custom reel strip boosts regular scatters (≈1/70 entry) without increasing BS odds.
+  - `bonus` – 100× buy, starts with 10 spins.
+  - `super_bonus` – 500× buy, forces 3×`S` + 1×`BS` entry and minimum 20× bombs.
 
-Symbols payouts are grouped by cluster-sizes (8-8), (9-10), (11,13), (14,36)
+Paytable tiers follow the Sweet Bonanza 8–9 / 10–11 / 12+ bracket structure. Scatter pays: 4 scatters trigger only, 5 scatters pay 5×, 6+ scatters pay 100×, and `BS` counts toward both trigger and payout totals.
 
-#### Basegame: 
+## Base Game
 
-Minimum of 3 Scatter symbols needed for freegame trigger. 
-2 freegame spins are awarded for each Scatter. 
+- 4+ total scatters trigger free spins (10 spins). Scatter counts beyond 4 only add payout; spin count stays fixed.
+- Super bonus on natural spins requires 3+ regular scatters plus exactly one `BS`. Only one `BS` can exist on the base/bonus_hunt reels at a time.
+- `bonus_hunt` mode uses bespoke base reels with extra scatter density on reels 1–3 and fewer dead lows; free-game reels are unchanged.
 
+## Free Spins
 
-#### Freegame rules
-Every tumble increments the global multiplier by +1, which is persistent throughout the freegame
-The global multiplier is applied to the tumble win as they are removed from the board
-After all tumbles have completed: multiply the cumulative tumble win by multipliers on board 
-(multipliers on board do not increment the global mult)
-If there is a multiplier symbol on the board, this is added to the global multiplier before the final evaluation
+- All entry paths start with 10 spins.
+- Retrigger: landing 3 or more regular scatters during the bonus adds +5 spins flat.
+- Multipliers reset to 1 at the start of every free spin. Bombs (`M`) appear only in bonuses, sum per tumble, and then multiply that tumble’s win.
+- Regular bonus bomb weights heavily favor 2×–15×; super bonus bombs guarantee ≥20× with elevated 25×–50× frequency.
+- `BS` never appears during regular or super free spins; it is base-only.
 
+## Bonus Buys
 
-#### Notes
-Due to the potential for symbols to tumble into the active board area, there is no upper limit on the number of freegame that can be awarded.
-The total number of freegame is 2 * (number of Scatters on board). To account for this the usual 'updateTotalFreeSpinAmount' function is overridden 
-in the game_executables.py file.
+- `bonus` buy: 100× bet, target EV ≈95–97%.
+- `super_bonus` buy: 500× bet, target EV ≈95–97%, guarantees the `BS` entry condition and ≥20× bombs.
 
-#### Event descriptions
-"winInfo" Summarises winning combinations. Includes multipliers, symbol positions, payInfo [passed for every tumble event]
-"tumbleBanner" includes values from the cumulative tumble, with global mult applied
-"setWin" this the result for the entire spin (from on Reveal to the next). Applied after board has stopped tumbling
-"seTotalWin" the cumulative win for a round. In the base-game this will be equal to the setWin, but in the bonus it will incrementally increase 
+## Events
+
+- `winInfo`: per-tumble symbol wins + multiplier context.
+- `tumbleBanner`: running tumble totals with applied multiplier.
+- `setWin`: total for the latest spin (base or bonus spin).
+- `setTotalWin`: cumulative total for the round (increments through bonuses).
 

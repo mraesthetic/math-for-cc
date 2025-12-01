@@ -55,6 +55,13 @@ class Scatter:
                 else:
                     wild_positions.append({"reel": reel_idx, "row": row_idx})
 
+        alias_map = getattr(config, "symbol_aliases", {})
+        if alias_map:
+            for original, target in alias_map.items():
+                if original in symbols_on_board:
+                    positions = symbols_on_board.pop(original)
+                    symbols_on_board.setdefault(target, []).extend(positions)
+
         # Update all symbol positions with wilds, as this symbol is shared
         for sym in symbols_on_board:
             if len(wild_positions) > 0:

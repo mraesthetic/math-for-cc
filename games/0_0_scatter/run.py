@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
 """Main file for generating results for sample ways-pay game."""
+
+import shutil
+from pathlib import Path
 
 from gamestate import GameState
 from game_config import GameConfig
@@ -9,6 +13,17 @@ from utils.rgs_verification import execute_all_tests
 from src.state.run_sims import create_books
 from src.write_data.write_configs import generate_configs
 
+
+def sync_lookup_tables(game_root: Path) -> None:
+    """Copy freshly generated lookup tables into publish_files for RGS verification."""
+    src_dir = game_root / "library" / "lookup_tables"
+    dst_dir = game_root / "library" / "publish_files"
+    if not src_dir.exists() or not dst_dir.exists():
+        return
+    for src in src_dir.glob("lookUpTable_*.csv"):
+        target = dst_dir / f"{src.stem}_0.csv"
+        shutil.copy2(src, target)
+
 if __name__ == "__main__":
 
     num_threads = 10
@@ -17,23 +32,27 @@ if __name__ == "__main__":
     compression = True
     profiling = False
 
+    sims_per_mode = 250_000
     num_sim_args = {
-        "base": int(1e4),
-        "bonus": int(1e4),
+        "base": sims_per_mode,
+        "bonus_hunt": sims_per_mode,
+        "bonus": sims_per_mode,
+        "super_bonus": sims_per_mode,
     }
 
     run_conditions = {
         "run_sims": True,
-        "run_optimization": True,
-        "run_analysis": True,
+        "run_optimization": False,
+        "run_analysis": False,
         "run_format_checks": True,
     }
-    target_modes = ["base", "bonus"]
+    target_modes = ["base", "bonus_hunt", "bonus", "super_bonus"]
+
+    game_root = Path(__file__).parent.resolve()
 
     config = GameConfig()
+    OptimizationSetup(config)
     gamestate = GameState(config)
-    if run_conditions["run_optimization"] or run_conditions["run_analysis"]:
-        optimization_setup_class = OptimizationSetup(config)
 
     if run_conditions["run_sims"]:
         create_books(
@@ -57,4 +76,5 @@ if __name__ == "__main__":
         create_stat_sheet(gamestate, custom_keys=custom_keys)
 
     if run_conditions["run_format_checks"]:
+        sync_lookup_tables(game_root)
         execute_all_tests(config)

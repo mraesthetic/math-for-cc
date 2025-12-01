@@ -14,7 +14,7 @@ class ConstructScaling:
                 if cond == "criteria":
                     assert isinstance(scaling[cond], str), "Enter string type for criteria condition"
                 elif cond in ["scale_factor", "probability"]:
-                    assert isinstance(scaling[cond], Union[float, int]), "Enter float/int type for value."
+                    assert isinstance(scaling[cond], (float, int)), "Enter float/int type for value."
                     if cond == "probability" and scaling[cond] > 1:
                         warn("probabilities > 1 will have no effect on selection.")
                 elif cond == "win_range":
