@@ -208,7 +208,7 @@ class GameConfig(Config):
                 auto_close_disabled=False,
                 is_feature=True,
                 is_buybonus=False,
-                distributions=build_base_distributions(base_reel_weights, zero_quota=0.08, freegame_quota=0.05),
+                distributions=build_base_distributions(base_reel_weights, zero_quota=0.07, freegame_quota=0.08),
             ),
             BetMode(
                 name=self.bonus_mode_names["bonus_hunt"],
@@ -219,7 +219,7 @@ class GameConfig(Config):
                 is_feature=True,
                 is_buybonus=False,
                 distributions=build_base_distributions(
-                    bonus_hunt_reel_weights, zero_quota=0.06, freegame_quota=0.30
+                    bonus_hunt_reel_weights, zero_quota=0.05, freegame_quota=0.45
                 ),
             ),
             BetMode(

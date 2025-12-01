@@ -126,8 +126,8 @@ Always regenerate lookup tables/books after touching these strips to keep downst
 
 ### 3.5 Distribution Quotas (current)
 
-- **Base bet mode:** `zero_quota = 0.08`, `freegame_quota = 0.05`, remainder (~0.77) stays in the organic basegame fence. This pushes most samples through the natural reels while still giving the optimizer a thin forced-freegame slice.
-- **Bonus hunt:** `zero_quota = 0.06`, `freegame_quota = 0.30`, remainder (~0.54) runs through basegame hits. Hunt reels now shoulder the majority of feature odds instead of the forced distribution.
+- **Base bet mode:** `zero_quota = 0.07`, `freegame_quota = 0.08`, remainder (~0.85) stays in the organic basegame fence. This keeps the reels in charge while giving the optimizer just enough forced data.
+- **Bonus hunt:** `zero_quota = 0.05`, `freegame_quota = 0.45`, remainder (~0.50) runs through basegame hits. Forced freegames act as a top-up while the juiced reels do most of the work.
 - **Bonus / Super buys:** still run 100% through the freegame fence (quota = 1.0) because buys skip base-play entirely.
 
 ## 4. Scatter & Free-Spin Triggering
