@@ -29,7 +29,7 @@ This document captures how the Stake Engine Math SDK repository is organized, ho
 
 1. **`make run GAME=...`**  
    - Uses `env/bin/python games/<game>/run.py`.
-   - Current defaults (per `games/0_0_scatter/run.py`): `num_threads=10`, `batching_size=10_000`, `sims_per_mode=5_000`, compression on, profiling off.
+   - Current defaults (per `games/0_0_scatter/run.py`): `num_threads=32`, `batching_size=20_000`, `sims_per_mode=250_000`, compression on, profiling off (adjust down to 5k for quick loops if needed).
 
 2. **`run.py` sequence**
    - Instantiates `GameConfig`, `GameState`, and `OptimizationSetup`.
@@ -112,18 +112,18 @@ This document captures how the Stake Engine Math SDK repository is organized, ho
   - Retriggers: any 3+ scatters (+5 spins). `BS` never appears in free spins.
 
 - **Super Free Spins:**
-  - Minimum bomb 25×; current weights `{25:260, 50:180, 75:90, 100:40, 500:8, 1000:2}` to bias teases.
+  - Minimum bomb 20×; current weights `{20:260, 25:220, 50:140, 75:80, 100:40, 500:8, 1000:1.5}` to bias teases.
   - Multipliers can appear even on dead boards (bomb with no win) to “blueball” the player, reinforcing the very-high-volatility feel.
   - Super buy entry board is forcibly `3×S + 1×BS`, and natural triggers respect whatever scatter mix landed (still paying 5×/100× as appropriate).
 
 - **Bonus Buys:**
   - Regular buy = 100× bet; entry board clamped to exactly four `S` (no BS, no extra scatter pays).
-  - Super buy = 500× bet; entry board shows 3×S + 1×BS visually with guaranteed ≥25× bomb.
+  - Super buy = 500× bet; entry board shows 3×S + 1×BS visually with guaranteed ≥20× bomb.
   - Target EV for both buys: 96.2% ± 0.5%.
 
 ### Current Tweaks & Open Items
 - **Distribution tuning:** Latest quotas drastically cooled base/hunt RTP; we’ll continue to tweak until the per-mode totals land near spec before running long (200k) simulations.
-- **Bomb weights:** Super mode now has aggressive 25×+ distribution; still monitoring to ensure high bombs mostly tease unless a big tumble is underway.
+- **Bomb weights:** Super mode now has aggressive 20×+ distribution; still monitoring to ensure high bombs mostly tease unless a big tumble is underway.
 - **Optimizer guardrails:** Already tightened; next step is to re-run PigFarm once reel/distribution math stabilizes.
 - **Spec alignment:** The MKDocs spec mirrors these settings; keep updating it as decisions change.
 

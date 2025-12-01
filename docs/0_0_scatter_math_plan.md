@@ -55,13 +55,13 @@ This plan tracks how we’ll iterate on `0_0_scatter` (Candy Carnage 1000) until
 
 **Goals**
 - Ensure regular bonus bombs follow the 70/25/5 feel and the EV matches the 96.2% ±0.5% requirement.
-- Make super bonus bombs feel “very high volatility”: more dead spins, frequent 25×–100× bombs, occasional 500×/1000× teases.
+- Make super bonus bombs feel “very high volatility”: more dead spins, frequent 20×–100× bombs, occasional 500×/1000× teases.
 
 **Tasks**
 1. **Regular bomb weights**  
    - Verify `{2…1000}` weights produce the intended distribution via targeted buy simulations (e.g., run only `bonus` mode with 5k sims or the in-process instrumentation script).
 2. **Super bomb adjustments**  
-   - Evaluate `{25:260, 50:180, 75:90, 100:40, 500:8, 1000:2}`.  
+   - Evaluate `{20:260, 25:220, 50:140, 75:80, 100:40, 500:8, 1000:1.5}`.  
    - If high bombs pay too often, reduce 500×/1000× weights; if teases feel too rare, increase dead-board frequency instead.
 3. **Retrigger cadence**  
    - Confirm retriggers occur roughly once every 3 bonuses (guideline). If too frequent, lighten scatter density during free spins.
@@ -74,8 +74,8 @@ This plan tracks how we’ll iterate on `0_0_scatter` (Candy Carnage 1000) until
 - Spec matches the final bomb weights and behaviour.
 
 **Current status**
-- Instrumentation script (1k spins per buy) now reports: regular bombs ~70.6% low / 23.3% mid / 6.1% high; super bombs distribution = 25× 39%, 50× 28%, 75× 18%, 100× 10%, 500× 4%, 1000× 0.8%.
-- Spec updated with new weight tables: regular weights `[350, 300, 260, …, 70, 35, 10, 1.0, 0.2]`, super weights `{25:220, 50:160, 75:100, 100:60, 500:20, 1000:5}`.
+- Instrumentation script (1k spins per buy) now reports: regular bombs ~70.6% low / 23.3% mid / 6.1% high; super bombs distribution now starts at 20× with weights heavily favouring the 20×/25×/50× trio and tapering into the ultra-rare 500×/1000× events.
+- Spec updated with new weight tables: regular weights `[350, 300, 260, …, 70, 35, 10, 1.0, 0.2]`, super weights `{20:260, 25:220, 50:140, 75:80, 100:40, 500:8, 1000:1.5}`.
 
 ---
 
