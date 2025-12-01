@@ -126,8 +126,8 @@ Always regenerate lookup tables/books after touching these strips to keep downst
 
 ### 3.5 Distribution Quotas (current)
 
-- **Base bet mode:** `zero_quota = 0.06`, `freegame_quota = 0.12`, remainder (~0.82) stays in the organic basegame fence. Slightly trimming the forced slice keeps total RTP near 0.6 without deadening the reels.
-- **Bonus hunt:** `zero_quota = 0.05`, `freegame_quota = 0.80`, remainder (~0.15) runs through basegame hits. Hunt now leans almost entirely on forced freegames to chase the 1.0 RTP target while the reels provide teases.
+- **Base bet mode:** `zero_quota = 0.05`, `freegame_quota = 0.27`, remainder (~0.68) stays in the organic basegame fence. This intentionally oversized forced slice should push the next mass run right into the 0.6 RTP band before we trim back down.
+- **Bonus hunt:** `zero_quota = 0.03`, `freegame_quota = 0.95`, remainder (~0.02) runs through basegame hits. Hunt RTP will now live almost entirely in forced freegames for the validation run; once numbers are dialed we’ll bleed quota back into the reels for final feel.
 - **Bonus / Super buys:** still run 100% through the freegame fence (quota = 1.0) because buys skip base-play entirely.
 
 ## 4. Scatter & Free-Spin Triggering
