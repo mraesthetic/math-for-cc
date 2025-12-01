@@ -119,7 +119,7 @@ Tweak individual symbol multipliers and reel weights to reach the hit-rate/RTP g
 ### 3.4 Final Reel Strips & Scatter Density
 
 - `BR0.csv` (normal spins): per-reel scatter counts `[9, 9, 8, 8, 7, 6]` with enforced **≥5-symbol spacing** so a reel can never display more than one scatter at once. Large-batch Monte-Carlo (1M spins) yields a **4+ scatter trigger rate of ≈0.0062 (≈1 in 161 spins)**, right on the 1-in-160 target.
-- `BR_HUNT.csv` (bonus_hunt mode): boosted counts `[11, 10, 10, 10, 9, 9]` keep the same spacing rule but overweight reels 1–4 to juice teases. Empirical sampling (~1M spins) lands at **≈0.0145 (≈1 in 69 spins)**—close to the desired 1-in-70 and intentionally a hair on the generous side per spec.
+- `BR_HUNT.csv` (bonus_hunt mode): further boosted counts `[12, 11, 11, 11, 9, 9]` with ≥5-spacing, plus a ~15% trim of low symbols on reels 1–3 so highs show up earlier. Reels 1–4 carry almost all the regular scatters while reels 5–6 stay identical to base for BS parity; empirical sampling is now intentionally closer to 1-in-60 to let quotas sit lower when we tighten later.
 - `FR0.csv` (free spins) and `WCAP.csv` (win-cap protects) remain unchanged from the template.
 
 Always regenerate lookup tables/books after touching these strips to keep downstream math assets in sync.
