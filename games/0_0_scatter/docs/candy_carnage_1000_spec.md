@@ -126,8 +126,8 @@ Always regenerate lookup tables/books after touching these strips to keep downst
 
 ### 3.5 Distribution Quotas (current)
 
-- **Base bet mode:** `zero_quota = 0.06`, `freegame_quota = 0.18`, remainder (~0.76) stays in the organic basegame fence. This provides enough forced freegames to reach the 0.6 RTP target while still letting reels carry the majority feel.
-- **Bonus hunt:** `zero_quota = 0.05`, `freegame_quota = 0.60`, remainder (~0.35) runs through basegame hits. Hunt mode leans heavily on forced freegames while the juiced reels supply teases and occasional base wins.
+- **Base bet mode:** `zero_quota = 0.06`, `freegame_quota = 0.12`, remainder (~0.82) stays in the organic basegame fence. Slightly trimming the forced slice keeps total RTP near 0.6 without deadening the reels.
+- **Bonus hunt:** `zero_quota = 0.05`, `freegame_quota = 0.80`, remainder (~0.15) runs through basegame hits. Hunt now leans almost entirely on forced freegames to chase the 1.0 RTP target while the reels provide teases.
 - **Bonus / Super buys:** still run 100% through the freegame fence (quota = 1.0) because buys skip base-play entirely.
 
 ## 4. Scatter & Free-Spin Triggering
