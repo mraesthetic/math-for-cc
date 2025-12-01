@@ -28,11 +28,11 @@ if __name__ == "__main__":
 
     num_threads = 32
     rust_threads = 64
-    batching_size = 20000
+    batching_size = 10000
     compression = True
     profiling = False
 
-    sims_per_mode = 250_000
+    sims_per_mode = 100_000
     num_sim_args = {
         "base": sims_per_mode,
         "bonus_hunt": sims_per_mode,
