@@ -219,7 +219,7 @@ class GameConfig(Config):
                 is_feature=True,
                 is_buybonus=False,
                 distributions=build_base_distributions(
-                    bonus_hunt_reel_weights, zero_quota=0.03, freegame_quota=0.95
+                    bonus_hunt_reel_weights, zero_quota=0.03, freegame_quota=0.86
                 ),
             ),
             BetMode(
